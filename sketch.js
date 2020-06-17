@@ -16,6 +16,20 @@ function setup() {
 function draw() {
   background(0,0,0);  
 
+  if(shape1.x - shape2.x < shape1.width/2 + shape2.width/2 &&
+    shape2.x - shape1.x < shape2.width/2 + shape1.width/2 &&
+    shape1.y - shape2.y < shape1.height/2 + shape2.height/2 &&
+    shape2.y - shape1.y < shape2.height/2 + shape1.height/2) {
+  shape1.shapeColor = 'red';
+  shape2.shapeColor = 'lime';
+  }
+  
+  else {
+  shape1.shapeColor = 'grey';
+  shape2.shapeColor = 'grey';
+  
+  }
+  
   if (movingRect.x - fixedRect.x < fixedRect.width/2 + movingRect.width/2
       && fixedRect.x - movingRect.x < fixedRect.width/2 + movingRect.width/2) {
     movingRect.velocityX = movingRect.velocityX * (-1);
