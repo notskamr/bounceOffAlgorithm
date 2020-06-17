@@ -1,5 +1,5 @@
 var fixedRect, movingRect;
-
+var obj1, obj2, obj3, obj4;
 function setup() {
   createCanvas(1200,800);
   fixedRect = createSprite(400, 100, 50, 80);
@@ -11,34 +11,37 @@ function setup() {
 
   movingRect.velocityY = -5;
   fixedRect.velocityY = +5;
+
+  obj1 = createSprite(100,100,50,80);
+  obj2 = createSprite(200,100,50,80);
+  obj3 = createSprite(300,100,50,80);
+  obj4 = createSprite(400,100,50,80);
+  obj3.velocityX = 2;
+  obj4.velocityX = -2;
+
 }
 
 function draw() {
   background(0,0,0);  
 
-  if(shape1.x - shape2.x < shape1.width/2 + shape2.width/2 &&
-    shape2.x - shape1.x < shape2.width/2 + shape1.width/2 &&
-    shape1.y - shape2.y < shape1.height/2 + shape2.height/2 &&
-    shape2.y - shape1.y < shape2.height/2 + shape1.height/2) {
-  shape1.shapeColor = 'red';
-  shape2.shapeColor = 'lime';
-  }
-  
-  else {
-  shape1.shapeColor = 'grey';
-  shape2.shapeColor = 'grey';
-  
-  }
-  
-  if (movingRect.x - fixedRect.x < fixedRect.width/2 + movingRect.width/2
-      && fixedRect.x - movingRect.x < fixedRect.width/2 + movingRect.width/2) {
-    movingRect.velocityX = movingRect.velocityX * (-1);
-    fixedRect.velocityX = fixedRect.velocityX * (-1);
-  }
-  if (movingRect.y - fixedRect.y < fixedRect.height/2 + movingRect.height/2
-    && fixedRect.y - movingRect.y < fixedRect.height/2 + movingRect.height/2){
-    movingRect.velocityY = movingRect.velocityY * (-1);
-    fixedRect.velocityY = fixedRect.velocityY * (-1);
-  }
+obj1.x = World.mouseX
+obj1.y = World.mouseY
+if(isTouching(obj1, obj2)) {
+  obj1.shapeColor = 'red';
+  obj2.shapeColor = 'lime';
+
+}
+else {
+  fixedRect.shapeColor = 'grey';
+  movingRect.shapeColor = 'grey';
+}
+bounceOff(obj3, obj4);
+
+ 
   drawSprites();
 }
+
+
+  
+
+
